@@ -257,3 +257,54 @@ Please include instructions about your strategy and important decisions you made
 1. What kind of data quality measures would you apply to your solution in production?
 2. What would need to change for the solution scale to work with a 10TB dataset with 5GB new data arriving each day?
 3. Please tell us in your modified README about any assumptions you have made in your solution.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. What kind of data quality measures would you apply to your solution in production?
+- Data Validation: Implement validation checks to verify the integrity and correctness of the transformed data. This can include checking for missing values, data type validation and format validation.
+
+- Error Handling and Logging: Establish a robust error handling mechanism to capture and handle any exceptions or errors that occur during the data transformation process.
+
+- Data Cleansing: Apply data cleansing techniques to rectify or remove any inconsistencies, inaccuracies, or duplicate records present in the data.
+
+- Data Completeness: Ensure that the transformed data contains all the necessary fields and attributes required for downstream analysis or applications. Check for missing values or incomplete records and handle them appropriately.
+
+
+- Data Accuracy: Establish methods to measure and evaluate the accuracy of the transformed data. This can involve comparing the transformed data against trusted or known sources, conducting manual or automated data reconciliation, or utilizing statistical methods.
+
+
+- Continuous Testing: Regularly perform testing and validation of the data transformation process to ensure ongoing data quality. Implement automated testing frameworks and regression tests to catch any introduced issues during system updates or changes
+_____________________________________________________________________________________________________________________________
+
+2. What would need to change for the solution scale to work with a 10TB dataset with 5GB new data arriving each day?
+
+- Infrastructure Scaling: Ensure infrastructure can handle the increased data volume. need to scale up storage capacity, processing power, and memory to accommodate the larger dataset and the daily influx of new data. Consider utilizing cloud-based solutions or distributed computing technologies for scalability.
+
+- Data Partitioning and Parallel Processing: Optimize data processing by partitioning the dataset into smaller chunks. This allows for parallel processing of data, leveraging multiple processing nodes or machines simultaneously. Utilize technologies like distributed data processing frameworks (e.g., Apache Spark) to distribute the workload across a cluster of nodes.
+
+- Incremental Processing: Modify ETL pipeline to support incremental processing. Instead of processing the entire 10TB dataset every time, design pipeline to process only the new incoming data. This can involve tracking and processing changes or additions since the last pipeline run, using techniques such as change data capture or timestamp-based filtering.
+
+- Batch Processing Optimization: Review data transformation logic and algorithms to ensure efficiency and optimize for large-scale batch processing. Consider techniques such as data parallelism, efficient data structures, and algorithmic optimizations to minimize processing time and resource utilization.
+
+- Data Compression and Optimization: Implement data compression techniques to reduce storage requirements and optimize data transfer.
+
+- Data Pipeline Orchestration: Review and enhance the orchestration and scheduling of ETL pipeline to accommodate the increased data volume. Utilize workflow management tools like Apache Airflow or Apache Oozie to handle complex dependencies, manage retries, and monitor the pipeline execution.
+
+_____________________________________________________________________________________________________________________________
+3. Please tell us in your modified README about any assumptions you have made in your solution.
+
+- Assuming that we are going to do truncate & load for our source dataset, hence not performing SCD and cleaning table every time to avoid data duplicacy.
+
+- Assuming DuckDB as a OLAP, hence using COPY command to do bulk insert instead of doing row level insert.
+
+- Assuming that solution needed to treat Sunday as first day of the week as per the given data in the sample table hence written a case condition when week is last week of the year but month is 1 then treat that as first week of the year and assign 0.
+
+_____________________________________________________________________________________________________________________________
+4. Things that could have been better.
+
+- Needed better test cases for ingest.py & outliers.py as I first time attempted writting unittest in Python, with hands on will be improving this.
+
+
+
+
+

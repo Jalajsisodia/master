@@ -29,6 +29,3 @@ class TestDbVotesTable(unittest.TestCase):
         result = self.connection.execute("SELECT COUNT(*) FROM blog_analysis.votes")
         schema_exists = bool(result.fetchone())
         self.assertTrue(schema_exists)
-
-if __name__ == '__main__':
-    unittest.main()
