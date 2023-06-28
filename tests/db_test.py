@@ -2,7 +2,6 @@ import unittest
 import duckdb
 import sys
 sys.path.insert(0, 'F:\EqualExperts\equal-experts-moot-unstuffy-upswing-4565fef52da6\equalexperts_dataeng_exercise')
-sys.path.append("F:\EqualExperts\equal-experts-moot-unstuffy-upswing-4565fef52da6\equalexperts_dataeng_exercise")
 from db import create_schema_blog_analysis, create_table_votes
 
 class TestDbSchemaCreation(unittest.TestCase):

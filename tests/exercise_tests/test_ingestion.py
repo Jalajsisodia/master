@@ -37,7 +37,7 @@ def test_check_table_exists(cursor):
     sql = """
         SELECT table_name 
         FROM information_schema.tables 
-        WHERE table_type='BASE TABLE' AND table_name='votes' AND table_schema='blog_analysis';
+        WHERE table_type='TABLE' AND table_name='votes' AND table_schema='blog_analysis';
     """
     result = cursor.sql(sql)
     assert len(result.fetchall()) == 1, "Expected table 'votes' to exist"
